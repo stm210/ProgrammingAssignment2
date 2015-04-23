@@ -1,5 +1,6 @@
 ## Coursera [R] Programming Assignment 2
-## Script inverts a matrix utilizing cache to save time 
+## Script inverts a matrix utilizing cache_
+## if available to save time 
 ## Inputs: an invertable matrix
 ## Outputs: inverse of the matrix
 
@@ -12,12 +13,12 @@ makeCacheMatrix <- function(x = matrix()) {
             }
             get <- function() x
             
-            setsolve <- function(solve) m <<- solve
-            getsolve <- function() m
+            setSolve <- function(solve) m <<- solve
+            getSolve <- function() m
             
             list(set = set, get = get,
-                 setsolve = setsolve,
-                 getsolve = getsolve)
+                 setSolve = setSolve,
+                 getSolve = getSolve)
         }
 
 
@@ -26,7 +27,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
  
-        m <- x$getsolve()
+        m <- x$getSolve()
       
         if(!is.null(m)) {
           message("Getting cached data.")
@@ -35,7 +36,7 @@ cacheSolve <- function(x, ...) {
         
         data <- x$get()
         m <- solve(data, ...)
-        x$setsolve(m)
+        x$setSolve(m)
        
         m  
   
